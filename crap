@@ -1,0 +1,52 @@
+
+$("body").append('On Page Load');
+
+tweekIt();
+
+function tweekIt() {
+  if ( $( "#xdebug-var-dump" ).length ) {
+    $( "#xdebug-var-dump" ).css('text-align', 'left');
+  }
+}
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  var checkPageButton = document.getElementById('dev');
+  checkPageButton.addEventListener('click', function() {
+
+    chrome.tabs.getSelected(null, function(tab) {
+      // d = document;
+      
+      $(tab).append('poo');
+      tweekIt();
+      // var newDiv = d.createElement('div');
+
+      // newDiv.appendChild(tab.url);
+      
+      // d.body.appendChild(newDiv);
+
+      $('#fillme').html(tab.url);
+
+    });
+  }, false);
+}, false);
+
+/*
+chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
+    var url = tabs[0].url;
+});
+      
+      d = document;
+
+      var f = d.createElement('form');
+      f.action = 'http://gtmetrix.com/analyze.html?bm';
+      f.method = 'post';
+      var i = d.createElement('input');
+      i.type = 'hidden';
+      i.name = 'url';
+      i.value = tab.url;
+      f.appendChild(i);
+      d.body.appendChild(f);
+      f.submit();
+*/
